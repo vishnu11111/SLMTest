@@ -1,0 +1,55 @@
+<apex:page showHeader="false" standardStylesheets="true">
+    <style>
+        div.pbSubheader {
+            margin-top: 0px !important;
+        }
+    </style>
+    <apex:pageBlock title="How to get Google API Key ?">
+        <table width="100%">
+            <tr valign="top">
+                <td width="50%">
+                    <apex:pageBlockSection columns="1" title="Textful instructions">
+                        You need to create or select a project in the Google Developers Console and enable the API.
+                        <ol>
+                            <li>Sign into <a href="https://console.developers.google.com/" onClick="window.open('https://console.developers.google.com/'); return false;" style="color:gray;">Google Developers Console</a> with your google account.
+                            </li>
+                            <li>
+                                Select a project, or create a new one. On the header you will find <b>API Project</b> dropdown for the same.
+                            </li>
+                            <li>
+                                In the left sidebar, please select/click <b>Library</b> option:
+                                <ul>
+                                    <li>
+                                		Please search <b>Google Maps Geocoding API</b> option and click this link. Now please click on <b>ENABLE</b> link to enable the API(please ignore if already enabled).    
+                                	</li><li>
+                                		Please click on <b>Library</b> option again and search <b>Time Zone API</b> option and click on this link. Now please click on <b>ENABLE</b> link to enable the API(please ignore if already enabled).
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                In the sidebar on the left, select <b>Credentials</b>.
+                            </li>
+                            <li>
+                             	If your project doesn&#39;t already have a Key for Browser Applications, create an API key by selecting <b>Create Credentials</b> and then selecting <b>Browser key</b>.   
+                            </li>
+                        </ol>
+                    </apex:pageBlockSection>
+                </td>
+                <td>
+                    <apex:pageBlockSection columns="1" title="Video instructions">
+                        You need to create or select a project in the Google Developers Console and enable the API.
+                        <ol>
+                            <li>Sign into <a href="https://console.developers.google.com/" onClick="window.open('https://console.developers.google.com/'); return false;" style="color:gray;">Google Developers Console</a> with your google account.
+                            </li>
+                            <li>
+                                Follow steps in following video.
+                                <iframe width="90%" height="300px" style="margin:10px;" src="https://www.youtube.com/embed/wwmMujLeIKs?rel=0" frameborder="0" allowfullscreen="true"></iframe>
+                                <!--<iframe width="960" height="720" style="margin:10px;" src="https://www.youtube.com/embed/wwmMujLeIKs?rel=0" frameborder="0" allowfullscreen="true"></iframe>-->
+                            </li>
+                        </ol>
+                    </apex:pageBlockSection>
+                </td>
+            </tr>
+        </table>
+    </apex:pageBlock>
+</apex:page>

@@ -1,0 +1,10 @@
+<aura:documentation>
+	<aura:description>
+        <p>An <code>TRKB_LL:weather</code> component represents an element that executes an action 
+            defined by a controller.
+        </p>
+    </aura:description>
+	<aura:example name="Example" ref="TRKB_LL:WeatherExample" label="Example 1">
+		<p>This example shows a simple setup of <code>weather</code>.</p>
+	</aura:example> 
+</aura:documentation>

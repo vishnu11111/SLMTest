@@ -1,0 +1,3 @@
+<design:component label="weather">
+	<design:attribute name="city" label="city" />  
+</design:component>

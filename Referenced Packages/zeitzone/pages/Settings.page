@@ -1,0 +1,138 @@
+<apex:page controller="zeitzone.SettingsCtrl" tabStyle="Local_Time_Settings__tab" sidebar="false">    
+    <apex:stylesheet value="{!URLFOR($Resource.zeitzone__SLDS0102, '/assets/styles/salesforce-lightning-design-system-ltng.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.zeitzone__jquery)}"/>
+    
+    <script>    
+        $(document).ready(function() {
+            console.log($("a.fancified"));
+            $("a.fancified").fancybox({
+                type: 'iframe',
+                'hideOnContentClick': true,
+                showCloseButton  : true,
+                autoSize  : true,
+                width       : '80%',
+                height      : '80%'
+            });
+            
+        });
+    </script>
+    
+    <style>
+        body{
+        	font-size: 12px !important;
+        }
+        #loading-curtain-div {
+            height:0px;
+            width:100%;
+            position:absolute;
+            z-index:5;
+            //-webkit-transition: all 0.30s ease-out;
+            //-moz-transition: all 0.30s ease-out;
+        }
+    </style>
+    <apex:sectionHeader subtitle="Local Time Settings" />
+    <br/>
+    <apex:form style="font-size:14px !important;" id="lead-edit-section">
+        <apex:pageBlock title="Update Settings">
+            
+            <apex:pageMessages escape="false" id="msg"/>
+            
+            <apex:pageBlockButtons location="top">                
+                <apex:commandButton value="Save" action="{!onSave}" reRender="msg, clockAppearance" style="margin-left: 5px;"/>
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockSection columns="1" title="API Keys">
+                <apex:pageBlockSectionItem >
+                    <apex:outputlabel value="Google API Key"/>
+                    <apex:outputPanel >
+                        <apex:inputField value="{!apiKeySetting.zeitzone__Value__c}" style="width:300px;" id="apiKey" html-placeholder="Type here to change or update key"/>  
+                        
+                        <a href="{!URLFOR($Page.SettingsApiKeyInstructions)}" class="fancified">
+                            <img src="/s.gif" alt="" class="helpIcon" title="click here to get google api key"/>
+                        </a>
+                        <div style="margin-top: 5px;">
+                            <small><i style="color:gray;"> 
+                                Local time might work well without any api key, but in case you run into any errors. Please create an API key as described in instructions.</i></small>
+                        </div>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputlabel value="Open weather API Key"/>
+                    <apex:outputPanel >
+                        <apex:inputField value="{!weatherApiKeySetting.zeitzone__Value__c}" style="width:300px;" id="weatherApiKey" html-placeholder="Type here to change or update key"/>  
+                        <a href="{!URLFOR($Page.SettingsOpenWeatherApiKeyInstructions)}" class="fancified">
+                            <img src="/s.gif" alt="" class="helpIcon" title="click here to get open weeather api key"/>
+                        </a>
+                        <div style="margin-top: 5px;">
+                            <small><i style="color:gray;"> 
+                                Weather details will not appear without API Key. Please get an API key as described in instructions.
+                                </i></small>
+                        </div>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="1" title="General setting">
+                <apex:pageBlockSectionItem >
+                    <apex:outputPanel >
+                        <apex:outputLabel value="Weather temperature unit in celsius"></apex:outputLabel>
+                    </apex:outputPanel>
+                    <apex:outputPanel >
+                        <apex:inputCheckbox value="{!tempUnitSetting.zeitzone__Use_Metric_Units__c}"/>
+                        <img src="/s.gif" alt="" class="helpIcon" title="Uncheck for fahrenheit" style="cursor:pointer"/>
+                    </apex:outputPanel>
+                
+                </apex:pageBlockSectionItem>
+            
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="1" collapsible="true" title="Layout Customization" id="pageUpdateSteps">
+                 <apex:pageBlockSectionItem >
+                    <apex:outputPanel >
+                        <apex:outputlabel value="How to update page layout?" styleClass="labelCol"/>
+                        <a href="{!URLFOR($Page.StepsPageLayoutUpdate)}" class="fancified">
+                            <img src="/s.gif" alt="" class="helpIcon" title="click here for instructions"/>
+                        </a>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputPanel >
+                        <apex:outputlabel value="How to show Local Time and Weather in Salesforce1 and Lightning experience?" styleClass="labelCol"/>
+                        <a href="{!URLFOR($Page.StepsForSF1)}" class="fancified">
+                            <img src="/s.gif" alt="" class="helpIcon" title="click here for instructions"/>
+                        </a>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="1" collapsible="true" title="Enable Apex Triggers" id="geo_setting">
+                <div style="margin-top: 5px;">
+                            <small><i style="color:gray;"> 
+                                Geocoding Leads,Accounts,Contacts is frequently done in many Salesforce orgs. We don't want to repeat and overburden your Salesforce org,if you are alredy geocoding any of these standard objects. Please make appropriate selection below to enable only the required geocoding triggers.
+                                </i></small>
+                        </div>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputlabel value="Geo location trigger for account">
+                        <img src="/s.gif" alt="" class="helpIcon" title="check to enable trigger on Account to update geolcation when shipping and Billing address changes" style="cursor:pointer"/>
+                    </apex:outputlabel>
+                    <apex:inputCheckbox value="{!accountSetting.zeitzone__Value__c}" required="true" style="width:100px;"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputlabel value="Geo location trigger for contact">
+                        <img src="/s.gif" alt="" class="helpIcon" title="check to enable trigger on Contact to update geolcation when mailing and other address changes" style="cursor:pointer"/>
+                    </apex:outputlabel>
+                    <apex:inputCheckbox value="{!contactSetting.zeitzone__Value__c}" required="true" style="width:100px;"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputlabel value="Geo location trigger for lead">
+                        <img src="/s.gif" alt="" class="helpIcon" title="check to enable trigger on Lead to update geolcation when address changes" style="cursor:pointer"/>
+                    </apex:outputlabel>
+                    <apex:inputCheckbox value="{!leadSetting.zeitzone__Value__c}" required="true" style="width:100px;"/>
+                </apex:pageBlockSectionItem>            
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>    
+    <apex:stylesheet value="{!URLFOR($Resource.zeitzone__fancybox, '/ionicons.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.zeitzone__fancybox, '/fancybox.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.zeitzone__fancybox, '/fancybox.pack.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.zeitzone__fancybox, '/mousewheel-3.0.6.pack.js')}"/>    
+</apex:page>

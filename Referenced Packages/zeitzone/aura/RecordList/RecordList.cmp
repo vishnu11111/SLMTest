@@ -1,0 +1,3 @@
+<aura:component controller="zeitzone.ObjectRecordsController" implements="force:appHostable">
+<!--This component is deprecated -->
+</aura:component>

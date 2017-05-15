@@ -1,0 +1,39 @@
+.THIS .time{
+  	font-size: 35pt;
+    font-weight: 800;
+    /*font-family: fantasy;*/
+    text-align:center;
+}
+
+.THIS .address{
+	font-size: 8pt;
+    color: grey;
+    margin-left: 4px;
+	margin-top: -14px;
+    text-align:center;
+}
+
+.THIS .error{
+    Color:Red;
+}
+
+.THIS .flip-clock-wrapper a:hover {
+    color: #313333;
+    text-decoration: none;
+}
+
+.THIS .clock, .THIS .flip-clock-wrapper{
+    text-align: center !important;
+    width: 548px !important;
+    margin: auto !important;
+}
+
+.THIS span.wxtemp{text-align:center; font-size: 10px; border-radius: 10px; padding:4px 8px; text-align:center}
+.THIS div.wxtemp { width: 96%; white-space: nowrap; padding: 1px 5px; font-size:12px; background-color:#e0e5ee; }
+.THIS .section-day { text-align: center; float: left; }
+.THIS .current-info span.infospan { padding: 5px 10px; }
+.THIS .pull-left { float:left }
+.THIS .contentall { box-shadow: 5px 7px 4px #bbb; padding:1%; width:99%; }
+.THIS .clearfix { clear:both !important; }
+.THIS .flip-clock-wrapper ul:last-child { box-shadow:none; border-radius:none; }
+.THIS .flip-clock-wrapper .flip { margin-right:1px; width:58px !important; }

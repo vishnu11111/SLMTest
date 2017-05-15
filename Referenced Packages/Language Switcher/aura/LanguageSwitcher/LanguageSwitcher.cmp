@@ -1,0 +1,30 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes"
+                controller="michi7.LanguageSwitcherController"
+                access="global"               
+                >
+    
+    <!--allow to change-->
+    <aura:attribute access="global" name="leftText" type="String" default="Language Switch:"/>
+    <aura:attribute access="global" name="rightText" type="String" default=""/>
+    <aura:attribute access="global" name="leftButtonString" type="String" default="English"/>
+    <aura:attribute access="global" name="rightButtonString" type="String" default="Japanese"/>
+    <aura:attribute access="global" name="leftLang" type="String" default="English"/>
+    <aura:attribute access="global" name="rightLang" type="String" default="Japanese"/>
+    <aura:attribute access="global" name="leftStyle" type="String" default="true"/>
+    <aura:attribute access="global" name="rightStyle" type="String" default="true"/>
+    
+    <!--internal use-->
+    <aura:attribute name="currentLang" type="String" default=""/>
+    
+    <!--event-->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <!--main contents-->    
+    <div class="slds">
+        {!v.leftText}&nbsp;
+        <ui:button aura:id="btn1" label="{!v.leftButtonString}" press="{!c.changeToLeft}" disabled="{!v.leftStyle}"/>
+        <ui:button aura:id="btn2" label="{!v.rightButtonString}" press="{!c.changeToRight}" disabled="{!v.rightStyle}"/>
+        &nbsp;{!v.rightText}
+    </div>
+    
+</aura:component>

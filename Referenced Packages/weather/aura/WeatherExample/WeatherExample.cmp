@@ -1,0 +1,12 @@
+<aura:component >
+    <TRKB_LL:weather >
+        <aura:set attribute="city" value="Bangalore"> This sets the attribute on the 
+            TRKB_LL:weather component.
+        </aura:set>
+        
+        <aura:set attribute="weather" value=" "> This sets the attribute on the 
+            TRKB_LL:weather component.
+        </aura:set>
+        
+    </TRKB_LL:weather>
+</aura:component>

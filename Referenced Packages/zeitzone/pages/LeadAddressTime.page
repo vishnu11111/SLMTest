@@ -1,0 +1,22 @@
+<apex:page standardController="Lead" sidebar="false" standardStylesheets="false">
+    <apex:includeScript value="/lightning/lightning.out.js" />
+    <!--<apex:stylesheet value="{!URLFOR($Resource.SLDS0102,'assets/styles/salesforce-lightning-design-system-vf.css')}"/>-->
+
+    <div id="lightning" />
+
+    <script>
+        $Lightning.use("zeitzone:LocalTimeNewApp", function() {
+          $Lightning.createComponent("zeitzone:LocalTimeNew",
+          { recordId :"{!Lead.Id}",redirectedFrom:"Vf" },
+          "lightning",
+          function(cmp) {
+            
+          });
+        });
+    
+    
+    function navigateToBack(){
+        history.back();
+        }
+    </script>
+</apex:page>

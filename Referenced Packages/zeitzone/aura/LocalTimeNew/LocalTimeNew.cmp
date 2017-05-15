@@ -1,0 +1,209 @@
+<aura:component controller="zeitzone.TimeZoneController" access="global" implements="force:appHostable">
+	<ltng:require styles="{!$Resource.zeitzone__SLDS0102 + '/assets/styles/salesforce-lightning-design-system-ltng.css'}" scripts="{!$Resource.zeitzone__jquery}"/>
+
+    <aura:attribute name="recordId" type="String" default="" access="global"/>
+    <aura:attribute name="screenType" type="String"  access="global" description="Two styles: Large/Small "/>
+    <aura:attribute name="activeField" type="String" />
+    
+    <aura:attribute name="fieldNames" type="Object[]"  access="global"/>
+    <aura:attribute name="redirectedFrom" type="String" default="lightning"/>
+    <aura:attribute name="activeFieldLabel" type="String" />
+    <aura:attribute name="isFirstTime" type="Boolean" default="true" />
+    <aura:attribute name="selectedTempValue" type="boolean" />
+    <aura:attribute name="address" type="String"  access="global"/>
+    <aura:attribute name="timeErrorMsg" type="String"  access="global"/>
+    <aura:attribute name="weatherErrorMsg" type="String"  access="global"/>
+    <aura:attribute name="tasksErrorMsg" type="String"  access="global"/>
+    <aura:attribute name="eventsErrorMsg" type="String"  access="global"/>
+    <aura:attribute name="currentDate" type="Date" access="global"/>
+    <aura:attribute name="currentTimeVal" type="String" access="global"/>
+    <aura:attribute name="events" type="Object[]"  access="global"/>
+    <aura:attribute name="tasks" type="Object[]"  access="global"/>
+    <aura:attribute name="filteredTasks" type="Object[]"  access="global"/>
+    <aura:attribute name="filter" type="String[]"  access="global"/>
+    <aura:attribute name="weather" type="Object"  access="global"/>
+    <aura:attribute name="ComingDaysWeather" type="Object[]"  access="global"/>
+    <aura:attribute name="setIntervalId" type="String" default="" access="global"/>
+    <aura:attribute name="statusList" type="String[]"  access="global"/>
+    <aura:attribute name="taskStatusErrorMessage" type="String"  access="global"/>
+    <aura:attribute name="taskPills" type="String[]"  access="global"/>
+    
+    <aura:handler event="zeitzone:ShowLocalTime" action="{!c.showLocalTime}"/>
+    <aura:handler event="zeitzone:ShowLocalTimeWeather" action="{!c.showLocalTimeWeather}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <div class="slds">         
+        <div class="{!if(v.screenType == 'small', 'slds-card card1BackColor SmallScreenType', 'slds-card card1BackColor mobl')}" id="card1">      
+            <ui:inputSelect aura:id="selection" change="{!c.getAddress}">
+                <aura:iteration items="{!v.fieldNames}" var="field">
+                    <ui:inputSelectOption text="{!field.name}" label="{!field.label}"/>
+                </aura:iteration>
+            </ui:inputSelect>
+            <div class="slds-card__body">
+                <div class="slds-tile slds-tile--board">
+                    <p class="slds-tile__title slds-text-heading--small">
+                        <ui:outputtext value="{!v.currentTimeVal}"/>
+                    </p>
+                    <p aura:id="currentTime" class="slds-tile__title slds-text-heading--small"></p>
+                    <aura:if isTrue="{!empty(v.timeErrorMsg)}">
+                        <div class="slds-tile__detail">                        
+                            <p class="slds-text-heading--medium">
+                                <ui:outputDateTime format="EEE MMM d" value="{!v.currentDate}"/>
+                            </p>
+                            <p class="slds-truncate Font80 cursorPoint" onclick="{!c.goToObject}" style="white-space: normal;">
+                                <i>{!v.activeFieldLabel} : {!v.address}</i>
+                            </p>
+                        </div>
+                        <aura:set attribute="else">
+                            <p class="slds-text-heading--medium">{!v.timeErrorMsg}</p>
+                        </aura:set>
+                    </aura:if>
+                </div>                
+            </div>
+        </div>
+        <div class="{!if(v.screenType == 'small', 'slds-card card2BackColor SmallScreenType','slds-card card2BackColor mobl')}" id="card2">
+            <div class="slds-card__body">
+                
+                <aura:if isTrue="{! !empty(v.weather)}">
+                    <div class="slds-grid slds-wrap">
+                        <div  class="slds-col slds-size--2-of-6">                            
+                            <div class="slds-float--left">
+                                <img src="{!'https://openweathermap.org/img/w/'+v.weather.icon+'.png'}" />
+                            </div>
+                            <p class="slds-text-heading--medium">{!v.weather.status}</p>
+                            <p class="slds-truncate">{!v.weather.temp_max}<aura:if isTrue="{!v.selectedTempValue}">&#8451;<aura:set attribute="else">&#8457;</aura:set></aura:if> | {!v.weather.temp_min}<aura:if isTrue="{!v.selectedTempValue}">&#8451;<aura:set attribute="else">&#8457;</aura:set></aura:if></p>			        
+                            
+                        </div>
+                        <div id="weatherDetail" class="slds-col slds-size--2-of-6">
+                            <p class="slds-truncate Font80">Humidity: {!v.weather.humidity}</p>
+                            <p class="slds-truncate Font80">Pressure: {!v.weather.pressure}</p>
+                            <p class="slds-truncate Font80">wind:{!v.weather.w_speed}mph</p>
+                            
+                        </div>
+                        <aura:if isTrue="{!!empty(v.selectedTempValue)}">
+                        <div class="slds-col slds-size--2-of-6">
+                        	<ui:inputSelect class="uiInputSelect font100" label="Temp in" aura:id="tempSelection"  change="{!c.changeTempUnit}">
+                                <ui:inputSelectOption text="true" label="Celsius" value="{!v.selectedTempValue}"/>
+                                <ui:inputSelectOption text="false" label="Fahrenheit" value="{!!v.selectedTempValue}"/>
+                            </ui:inputSelect>
+                        </div></aura:if>
+                        <div  class="slds-col parent-content">
+                            <div class="slds-grid child-content">
+                                <aura:iteration items="{!v.ComingDaysWeather}" var="weather">
+                                    <div class="weatherTrans slds-col--padded slds-size--1-of-5">
+                                        <div style="height: 42px;font-size: 10px;font-weight: bold;">
+                                            <ui:outputDateTime format="EEE" value="{!weather.dt_txt}"/>
+                                            <img src="{!'https://openweathermap.org/img/w/'+weather.icon+'.png'}"/>
+                                        </div>
+                                        <div style="font-size:0.6em">
+                                            {!weather.temp_max}<aura:if isTrue="{!v.selectedTempValue}">&#8451;<aura:set attribute="else">&#8457;</aura:set></aura:if>| {!weather.temp_min}<aura:if isTrue="{!v.selectedTempValue}">&#8451;<aura:set attribute="else">&#8457;</aura:set></aura:if>
+                                        </div>
+                                    </div> 
+                                </aura:iteration> 
+                            </div>
+                        </div>
+                    </div>
+                    <aura:set attribute="else">
+                        <div class="slds-tile slds-tile--board">
+                            <p class="slds-text-heading--medium">{!v.weatherErrorMsg}</p>
+                        </div>
+                    </aura:set>
+                    
+                </aura:if>
+                
+                
+            </div>
+        </div>
+        <div class="{!if(v.screenType == 'small', 'slds-card SSCard3 slds-scrollable--y SmallScreenType', 'slds-card card3BackColor slds-scrollable--y mobl')}" id="card3">
+            <div id="eventsList" class="slds-card__body eventHeight hide-scrollbar">
+                <div class="slds-tile slds-tile--board">
+                    <div class="slds-tile__detail">
+                        <aura:if isTrue="{!empty(v.eventsErrorMsg)}">
+                            <aura:if isTrue="{!!empty(v.events)}">
+                                <aura:iteration items="{!v.events}" var="event">
+                                    <zeitzone:Activities redirectedFrom="{!v.redirectedFrom}" activityType="Event" activity="{!event}"/>
+                                </aura:iteration>
+                                <aura:set attribute="else">
+                                    <p class="slds-text-heading--medium">No Events for Today</p>
+                                </aura:set>
+                            </aura:if>
+                            <aura:set attribute="else">
+                                <p class="slds-text-heading--medium">{v.eventsErrorMsg}</p>
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                </div>
+            </div>
+            <aura:if isTrue="{!v.events.length>3}">
+            	<zeitzone:svg cId="eventArrowSign" style="width: 1rem;height: 1rem;" class="arrowStyle slds-icon" xlinkHref="/resource/zeitzone__SLDS0102/assets/icons/utility-sprite/svg/symbols.svg#chevrondown"/>
+            </aura:if>
+        </div>
+        <div class="{!if(v.screenType == 'small', 'slds-card SmallScreenType SSCard4', 'slds-card card4BackColor mobl')}" id="card4">
+            <div id="taskSections" class="slds-card__header slds-grid">                
+                <div class="slds-text-heading--small slds-col slds-size--3-of-12">Due Tasks</div>                
+                <div class="slds-col slds-size--8-of-12" id="filtersSection">
+                    
+                    <aura:renderIf isTrue="{!v.taskPills.length > 0}">
+                        <aura:iteration items="{!v.taskPills}" var="pill" >
+                        	<SPAN>
+                                <span id="{!pill}" style="white-space: nowrap;line-height: 22px;padding-bottom:3px;margin-right: 1px;border: 1px solid #d8dde6;border-radius: 0.25rem;font-size: 0.7rem;background-color: #6BB8CE;">
+                                    <p style="color: 00004F;" class="slds-pill__label">{!pill}</p>
+                                    <button class="slds-button slds-button--icon-bare" onclick="{!c.removeFilter}">
+                                        <div style="width: .7rem; height: .7rem;" ariaHidden="true" data-data="{!pill}" class="slds-button__icon">X</div>
+                                        <!--<c:svg cId="{!'pill-' + pill}" style="width: .7rem; height: .7rem;" ariaHidden="true" data="{!pill}" class="slds-button__icon" xlinkHref="/resource/SLDS0102/assets/icons/utility-sprite/svg/symbols.svg#close" />-->
+                                        <span class="slds-assistive-text">Remove</span>
+                                    </button>
+                                </span>
+                            </SPAN>
+                        </aura:iteration>
+        				
+                    </aura:renderIf>
+                    
+                </div>
+                <div class="slds-col slds-size--1-of-12" >
+                    <aura:if isTrue="{!!empty(v.tasks)}">
+                        <ui:inputSelect aura:id="pillsSections" change="{!c.addPills}" class="width15">
+                            <ui:inputSelectOption text="" label="" value="true" disabled="true"/>
+                            <aura:iteration items="{!v.statusList}" var="status">
+                                <ui:inputSelectOption text="{!status}" label="{!status}"/>
+                            </aura:iteration>
+                        </ui:inputSelect>
+                    </aura:if>
+                </div>
+            </div>
+            
+            <div id="tasksList" class="slds-card__body height75 hide-scrollbar" style="padding-top: 0;">        
+                <div class="slds-tile slds-tile--board" style="padding-top: 0;">
+                    <div class="slds-tile__detail" style="padding-top: 0;">
+                        <aura:if isTrue="{!empty(v.tasksErrorMsg)}">                            
+                            <aura:if isTrue="{!!empty(v.tasks)}">
+                                <aura:iteration items="{!v.filteredTasks}" var="task">
+                                    <zeitzone:Activities redirectedFrom="{!v.redirectedFrom}" activityType="Task" activity="{!task}"/>
+                                </aura:iteration>                             
+                                <aura:set attribute="else">
+                                    <p class="slds-text-heading--medium">No Tasks for Today</p>
+                                </aura:set>
+                            </aura:if>
+                            <aura:set attribute="else">
+                                <p class="slds-text-heading--medium">{v.tasksErrorMsg}</p>
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                </div>                
+            </div>
+            <span style="{! (empty(v.filteredTasks==null) || 4>v.filteredTasks.length) ? 'display:none' : '' }">
+            	<zeitzone:svg cId="arrowSign" style="width: 2rem; height: 2rem; fill: lightblue;" 
+                       class="arrowStyle slds-icon" data="down"
+                       xlinkHref="/resource/zeitzone__SLDS0102/assets/icons/utility-sprite/svg/symbols.svg#chevrondown"/>
+            </span>
+        </div>
+        
+        <div class="slds-spinner_container spinnerDiv" aura:id="spinner">
+            <div class="slds-spinner slds-spinner--large spinnerImg" aria-hidden="false" role="alert">
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+        
+    </div>    
+</aura:component>

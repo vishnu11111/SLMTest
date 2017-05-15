@@ -1,0 +1,32 @@
+<apex:page showHeader="false" standardStylesheets="true">
+    <style>
+        div.pbSubheader {
+        margin-top: 0px !important;
+        }
+    </style>
+    <apex:pageBlock title="How to show Local Time and Weather in Salesforce1 and Lightning Experience?">
+        <table width="100%">
+            <tr valign="top">
+                <td>
+                    <apex:pageBlockSection columns="1" title="Steps: Setting up salesforce1 and Lightning Experience actions">
+                        Steps to add custom actions to salesforce1 and Lightning Experience
+                        <ol>
+                            <li>From Setup, click Customize and select the desired standard object(Account,Leads,Contact) and choose the Page Layouts link.
+                            </li>
+                            <li>Click Edit next to the page layout you want to customize.
+                            </li>
+                            <li>Click the Salesforce1 Actions category in the palette.
+                            </li>
+                            <li>In the Actions in the Salesforce1 Action Bar section, click override the predefined actions.
+                            </li>
+                            <li>Drag the Show Time/Weather element into the Actions in the 'Salesforce1 and Lightning Experience Actions' section 
+                            </li>
+                            <li>Click Save.
+                            </li>
+                        </ol>                      
+                    </apex:pageBlockSection>
+                </td>
+            </tr>
+        </table>
+    </apex:pageBlock>
+</apex:page>

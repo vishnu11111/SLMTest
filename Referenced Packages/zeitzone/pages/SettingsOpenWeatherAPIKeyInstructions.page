@@ -1,0 +1,33 @@
+<apex:page showHeader="false" standardStylesheets="true">
+    <style>
+        div.pbSubheader {
+            margin-top: 0px !important;
+        }
+    </style>
+    <apex:pageBlock title="How to get Open Weather API Key ?">
+        <table width="100%">
+            <tr valign="top">
+                <td width="100%">
+                    <apex:pageBlockSection columns="1" title="Textful instructions">
+                        To get access to weather API you need an API key whatever account you chose from Free to Enterprise.
+                        <ol>
+                            <li>
+                                Register on the <a href="https://openweathermap.org/register" onClick="window.open('https://openweathermap.org/register'); return false;" style="color:gray;">Sign up</a> page. Once done please login to same account of Open Weather.
+                            </li>
+                            <li>
+                                Get unique API key for yourself:
+                                	<ul>
+                                    	<li>
+                                            Please click on <b>API Keys</b> tab.
+                                        </li><li>
+                                            Now specify Key Name into <b>Create key</b> - <b>Name</b> and click on <b>Generate</b> button.
+                                        </li>    
+                                	</ul>
+                            </li>
+                        </ol>
+                    </apex:pageBlockSection>
+                </td>
+            </tr>
+        </table>
+    </apex:pageBlock>
+</apex:page>

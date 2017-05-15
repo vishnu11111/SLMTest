@@ -1,0 +1,26 @@
+<apex:page sidebar="false" standardStylesheets="false">
+    <apex:includeScript value="/lightning/lightning.out.js" />
+    
+    <div id="lightning" />
+    
+    <script>
+    /*//Initializes Lightning Component
+        $Lightning.use("zeitzone:LocalTimeNewApp", function() {
+          $Lightning.createComponent("zeitzone:LocalTimeNew",
+          { recordId :"{Id}", 
+            redirectedFrom:"Vf"
+          },
+          "lightning",
+          function(cmp) {
+            
+          });
+        });
+    
+        function navigateToBack(){
+            history.back();
+        }*/
+        /*
+            You can specify"activeFied" into 2nd parameter of createComponent, if we specify this then this field will be used to display details(localtime & weather).
+        */
+    </script>
+</apex:page>

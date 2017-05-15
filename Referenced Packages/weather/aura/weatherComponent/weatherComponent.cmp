@@ -1,0 +1,39 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable">
+    <aura:attribute name="isValidCity" type="boolean" default="false"/>
+    
+    <ltng:require styles="/resource/TRKB_LL__Icons/SLDS050/assets/styles/salesforce-lightning-design-system.css"/>
+    
+    <section class="slds-box slds-theme--default slds-m-vertical--small">
+        <div class="slds-text-heading--medium">
+            <h1>What's the weather?</h1>
+        </div>
+        
+        <div> 
+            <div class="slds-form-element slds-p-vertical--medium ">
+                <span class="slds-text-heading--label">Enter City / Postal Code : </span>
+                <table width="100%" class="slds-truncate">
+                    <tr width="100%">
+                        <td width="90%">
+                            <ui:inputText aura:id="name" class="slds-input" placeholder="City Name" required="true" />    
+                        </td>
+                        <td width="10%">
+                            <span class="slds-m-left--xx-small">&nbsp;</span>
+                            <ui:button class="slds-button" label="Show" press="{!c.passValue}" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div>
+                <aura:renderIf isTrue="{!v.isValidCity}" >   
+                    <ui:message title="Error" severity="error" closable="false"> 
+                        Please Enter City and Proceed
+                    </ui:message>
+                </aura:renderIf>
+            </div>
+
+            <!-- Call main component with argument city -->  
+            <TRKB_LL:weather city="{!v.city}"/> 
+        </div>
+    </section>    
+</aura:component>

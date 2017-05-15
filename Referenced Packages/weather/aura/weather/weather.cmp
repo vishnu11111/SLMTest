@@ -1,0 +1,53 @@
+<aura:component controller="TRKB_LL.weatherClass" >
+    <aura:attribute name="weather" type="String[]"/>
+    <aura:attribute name="city" type="String"/>
+    <!--On change of city call the controller method -->
+    <aura:handler name="change" value="{!v.city}" action="{!c.getInput}" />    
+    
+    <aura:iteration var="w" items="{!v.weather}">
+        <div style="display:none;">{!!w.isInvalidCity}</div> 
+        <aura:renderIf isTrue="{!!w.isInvalidCity}" >
+            <table width="100%">
+                <tr width="100%">
+                    <td width="4%" height="30px"></td>
+                    <td width="15%">
+                    	<span class="slds-text-heading--label">City / Postal Code : </span>
+                    </td>
+                    <td width="15%">{!v.city}</td>
+                    <td width="66%">&nbsp;</td>
+                </tr>
+                <tr width="100%">
+                    <td width="4%" height="30px"></td>
+                    <td width="15%"><span class="slds-text-heading--label">Country : </span></td>
+                    <td width="15%">{!w.country}</td>
+                    <td width="66%">&nbsp;</td>
+                </tr>
+                <tr width="100%">
+                    <td width="4%"><img src="/resource/TRKB_LL__Icons/WeatherIcons/temperature.png" height="30" width="30"/></td>
+                    <td width="15%"><span class="slds-text-heading--label">Temperature : </span></td>
+                    <td width="15%">{!w.Temp_Celsius} &deg;C ,{!w.Temp_Fahrenheit} &deg;F</td>
+                    <td width="66%">&nbsp;</td>
+                </tr>
+                <tr width="100%">
+                    <td width="4%"><img src="/resource/TRKB_LL__Icons/WeatherIcons/humidity.png" height="30" width="30"/></td>
+                    <td width="15%"><span class="slds-text-heading--label">Humidity : </span></td>
+                    <td width="15%">{!w.humidity} %</td>
+                    <td width="66%">&nbsp;</td>
+                </tr>
+                <tr width="100%">
+                    <td width="4%"><img src="/resource/TRKB_LL__Icons/WeatherIcons/pressure.png" height="30" width="30"/></td>
+                    <td width="15%"><span class="slds-text-heading--label">Pressure : </span></td>
+                    <td width="15%">{!w.pressure} hpa</td>
+                    <td width="66%">&nbsp;</td>
+                </tr>
+            </table> 
+        </aura:renderIf>
+        <div class="slds-m-top--small">  
+            <aura:renderIf isTrue="{!w.isInvalidCity}" >                    
+                <ui:message title="Error" severity="error" closable="false"> 
+                    Please Enter Valid City
+                </ui:message>
+            </aura:renderIf>
+        </div>
+    </aura:iteration>
+</aura:component>

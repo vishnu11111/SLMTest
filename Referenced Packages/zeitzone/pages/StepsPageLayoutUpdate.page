@@ -1,0 +1,32 @@
+<apex:page showHeader="false" standardStylesheets="true">
+    <style>
+        div.pbSubheader {
+        margin-top: 0px !important;
+        }
+    </style>
+    <apex:pageBlock title="How to update page layout ?">
+        <table width="100%">
+            <tr valign="top">
+                <!--<td width="50%">
+                    <apex:pageBlockSection columns="1" title="Automatically updation(through metadata)">
+                        You need to check the button to update page layout automatically(with the help of metadata).
+                        <apex:image id="theImage" value="{!$Resource.afterUpdation}" width="100%" height="150px"/>
+                    </apex:pageBlockSection>
+                </td>-->
+                <td>
+                    <apex:pageBlockSection columns="1" title="Steps">
+                        Steps to edit Page Layouts for Standard Objects
+                        <ol>
+                            <li>From Setup, click Customize and select the desired standard object(Account,Leads,Contact) and choose the Page Layouts link.
+                            </li>
+                            <li>Click Edit next to the page layout you want to customize.
+                            </li>
+                            <li>At the layout page select Buttons at the left top corner and the click and drag your custom button to the layout.
+                            </li>
+                        </ol>                      
+                    </apex:pageBlockSection>
+                </td>
+            </tr>
+        </table>
+    </apex:pageBlock>
+</apex:page>

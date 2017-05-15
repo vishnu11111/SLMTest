@@ -1,0 +1,17 @@
+<apex:page standardController="Account"  recordSetVar="xyz">
+
+<apex:form >
+
+<apex:pageBlock >
+<apex:pageBlockTable value="{!xyz}" var="x">
+<apex:column value="{!x.name}"/>
+<apex:column ><apex:inputField value="{!x.name}"/></apex:column>
+
+</apex:pageBlockTable>
+<apex:commandLink value="previous" action="{!previous}"/>
+<apex:commandLink value="next" action="{!next}"/>
+<!-- <apex:commandButton value="Update" action="{!saveAndredirect}"/> -->
+
+</apex:pageBlock>
+</apex:form>
+</apex:page>

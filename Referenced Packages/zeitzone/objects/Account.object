@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>BillingLTFactor__c</fullName>
+        <defaultValue>99</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Local Time Factor: TimeZone Factor / 24</description>
+        <externalId>false</externalId>
+        <label>BillingLTFactor</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>16</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BillingLocalTime__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>if( isBlank(BillingTimeZoneId__c), &apos;&apos;, substitute(mid( TEXT (Now()+ BillingLTFactor__c),6,5),&apos;-&apos;,&apos;/&apos;) &amp; &apos;/&apos; &amp; left( TEXT (Now()+ BillingLTFactor__c),4) &amp; &apos; &apos; 
+&amp; 
+if( value(mid( TEXT (Now() + BillingLTFactor__c),12,2)) &gt; 12 
+, text(mod(value(mid( TEXT (Now() + BillingLTFactor__c),12,2)),12)) &amp; mid( TEXT (Now() + BillingLTFactor__c),14,3) &amp; &apos; PM&apos; 
+, mid( TEXT (Now()+ BillingLTFactor__c),12,5) &amp; case( value(mid( TEXT (Now()+ BillingLTFactor__c),12,2))/12 , 1, &apos; PM&apos;, &apos; AM&apos;) ))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Billing Local Time</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BillingTimeZoneId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>store timeZoneId of Billing address</description>
+        <externalId>false</externalId>
+        <label>BillingTimeZoneId</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ShippingLTFactor__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Local Time Factor: TimeZone Factor / 24</description>
+        <externalId>false</externalId>
+        <label>ShippingLTFactor</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>16</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ShippingLocalTime__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>if( IsBlank(ShippingTimeZoneId__c), &apos;&apos;,  substitute(mid( TEXT (Now()+ ShippingLTFactor__c),6,5),&apos;-&apos;,&apos;/&apos;) &amp; &apos;/&apos; &amp; left( TEXT (Now()+ ShippingLTFactor__c),4) &amp; &apos; &apos; 
+&amp; 
+if( value(mid( TEXT (Now() + ShippingLTFactor__c),12,2)) &gt; 12 
+, text(mod(value(mid( TEXT (Now() + ShippingLTFactor__c),12,2)),12)) &amp; mid( TEXT (Now() + ShippingLTFactor__c),14,3) &amp; &apos; PM&apos; 
+, mid( TEXT (Now()+ ShippingLTFactor__c),12,5) &amp; case( value(mid( TEXT (Now()+ ShippingLTFactor__c),12,2))/12 , 1, &apos; PM&apos;, &apos; AM&apos;) ) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Shipping Local Time</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ShippingTimeZoneId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>store the timeZoneId of shipping address</description>
+        <externalId>false</externalId>
+        <label>ShippingTimeZoneId</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <webLinks>
+        <fullName>Show_Time_Weather</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Show Time/Weather</masterLabel>
+        <openType>sidebar</openType>
+        <page>AccountAddressTime</page>
+        <protected>false</protected>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,11 @@
+<apex:page controller="DemoClass">
+ <apex:form >
+ Account name : <apex:inputText value="{!serachString1}">
+ </apex:inputText>
+ <br></br>
+ Account number : <apex:inputText value="{!serachString2}">
+ </apex:inputText>
+ <br></br>
+ <apex:commandButton value="Maar de Enter" action="{!search}"/>
+ </apex:form>
+</apex:page>

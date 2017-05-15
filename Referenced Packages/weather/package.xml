@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>weather</fullName>
+    <apiAccessLevel>Unrestricted</apiAccessLevel>
+    <namespacePrefix>TRKB_LL</namespacePrefix>
+    <types>
+        <members>TestWeather</members>
+        <members>weatherClass</members>
+        <members>weatherDetails</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>WeatherApp</members>
+        <members>WeatherExample</members>
+        <members>weather</members>
+        <members>weatherComponent</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>weather</members>
+        <name>RemoteSiteSetting</name>
+    </types>
+    <types>
+        <members>Icons</members>
+        <name>StaticResource</name>
+    </types>
+    <version>36.0</version>
+</Package>

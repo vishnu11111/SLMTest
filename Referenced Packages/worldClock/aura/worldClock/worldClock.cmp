@@ -1,0 +1,32 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global">
+  <div class="worldClock">    
+      <ui:outputText value="Get the current local time of a city:" aura:id="ot"/>
+      <br></br> <br></br>
+      <div class="forceRecordLayout">
+      <ui:inputSelect class="selectItem" aura:id="menuChange" change="{!c.click}">
+        <ui:inputSelectOption class="dropDown" label="--Select City--" text="none" value="true"/>
+        <ui:inputSelectOption class="dropDown" label="Berlin" text="Berlin:1:CEST"/>
+        <ui:inputSelectOption class="dropDown" label="Boston" text="Boston:-5:EDT"/>
+        <ui:inputSelectOption class="dropDown" label="Denver" text="Denver:-7:MDT"/>
+        <ui:inputSelectOption class="dropDown" label="Dublin" text="Dublin:0:IST"/>
+        <ui:inputSelectOption class="dropDown" label="Houston" text="Houston:-6:CDT"/>
+        <ui:inputSelectOption class="dropDown" label="London" text="London:0:BST"/>
+        <ui:inputSelectOption class="dropDown" label="Los Angeles" text="Los Angeles:-8:PDT"/>
+        <ui:inputSelectOption class="dropDown" label="Madrid" text="Madrid:1:CEST"/>
+        <ui:inputSelectOption class="dropDown" label="Melbourne" text="Melbourne:10:AEST"/>
+        <ui:inputSelectOption class="dropDown" label="Moscow" text="Moscow:3:MSK"/>
+        <ui:inputSelectOption class="dropDown" label="New York" text="New York:-5:EDT"/>
+        <ui:inputSelectOption class="dropDown" label="Paris" text="Paris:1:CEST"/>
+        <ui:inputSelectOption class="dropDown" label="Perth" text="Perth:8:AWST"/>
+        <ui:inputSelectOption class="dropDown" label="Rome" text="Rome:1:CEST"/>
+        <ui:inputSelectOption class="dropDown" label="San Francisco" text="San Francisco:-8:PDT"/>
+        <ui:inputSelectOption class="dropDown" label="Seattle" text="Seattle:-8:PDT"/>
+        <ui:inputSelectOption class="dropDown" label="Sydney" text="Sydney:10:AEST"/>
+        <ui:inputSelectOption class="dropDown" label="Vancouver" text="Vancouver:-8:PDT"/>
+        <ui:inputSelectOption class="dropDown" label="Washington DC" text="Washington DC:-5:EDT"/>
+     </ui:inputSelect>
+     </div>
+    <br></br> <br></br>
+    <ui:outputText value="" aura:id="timeLabel"/>
+  </div>
+</aura:component>

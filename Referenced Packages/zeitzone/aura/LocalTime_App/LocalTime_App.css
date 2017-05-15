@@ -1,0 +1,51 @@
+.THIS .listview {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #eee;
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjExcHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgMTEgOCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWxuczpza2V0Y2g9Imh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaC9ucyI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDMuMS4xICg4NzYxKSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5kaXJlY3Rkb3duX2xpc3R2aWV3aWNrZXI8L3RpdGxlPgogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iTGlzdHZpZXciIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHNrZXRjaDp0eXBlPSJNU1BhZ2UiPgogICAgICAgIDxwYXRoIGQ9Ik0wLjgxNDU4OTcxNSwxLjUzNjQyODU3IEMyLjQyNjA1MzcxLDQuMzkzNzMwMjggNC45NTgzNTQyOSw2Ljg3MTg2NCA1LjA2NjY4OCw2Ljk2NjY1NiBDNS4zMTA0Mzg4Niw3LjE4MzMyMzQzIDUuNjg5NjA2ODYsNy4xODMzMjM0MyA1LjkzMzM1NzcyLDYuOTY2NjU2IEM2LjA0MTY5MTQzLDYuODcxODY0IDguNTczOTkyLDQuMzkzNzMwMjggMTAuMTg1NDU2LDEuNTM2NDI4NTcgQzEwLjI5Mzc4OTcsMS4zNDY4NDQ1NyAxMC4yOTM3ODk3LDEuMTE2NjM1NDMgMTAuMTg1NDU2LDAuOTI3MDUxNDI3IEMxMC4wNzcxMjIzLDAuNzM3NDY3NDI3IDkuODg3NTM4MjksMC42MTU1OTE5OTggOS42NzA4NzA4NiwwLjYwMjA1MDI4NCBDOS42NDM3ODc0MywwLjU4ODUwODU3IDcuNjEyNTMwMjksMC40NjY2MzMxNDEgNS41MDAwMjI4NiwwLjQ2NjYzMzE0MSBDMy4zODc1MTU0MywwLjQ2NjYzMzE0MSAxLjM1NjI1ODI5LDAuNTg4NTA4NTcgMS4zMjkxNzQ4NiwwLjYwMjA1MDI4NCBDMS4xMTI1MDc0MywwLjYxNTU5MTk5OCAwLjkwOTM4MTcxNSwwLjczNzQ2NzQyNyAwLjgxNDU4OTcxNSwwLjkyNzA1MTQyNyBDMC43MDYyNTYsMS4xMTY2MzU0MyAwLjcwNjI1NiwxLjM0Njg0NDU3IDAuODE0NTg5NzE1LDEuNTM2NDI4NTcgTDAuODE0NTg5NzE1LDEuNTM2NDI4NTcgWiIgaWQ9ImRpcmVjdGRvd25fbGlzdHZpZXdpY2tlciIgZmlsbD0iIzNDM0QzRSIgc2tldGNoOnR5cGU9Ik1TU2hhcGVHcm91cCI+PC9wYXRoPgogICAgPC9nPgo8L3N2Zz4=");
+    background-position: 100% 50%;
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem, 100% 100%;
+    border-color: -moz-use-text-color -moz-use-text-color #dadee2;
+    border-image: none;
+    border-radius: 0;
+    border-style: none none solid;
+    border-width: medium medium 1px;
+    box-sizing: border-box;
+    color: #3c3d3e;
+    font-family: "ProximaNovaSoft-Semibold";
+    font-size: 1.5625rem;
+    margin: 0 0 8px;
+    max-width: 50%;
+    padding: 1px 3px 3px;
+    width:144px;
+    -moz-appearance: none;
+    outline:0;
+}
+
+.THIS .listview:focus, .THIS .listview:active {
+    background-color: #eee;
+    outline:0;
+}
+
+.THIS .search-field {
+    vertical-align: middle;
+    width: 250px;
+    padding-left: 6px;
+    min-height: 30px;
+    height: 30px;
+    border: solid 1px #ccc;
+    margin-right: 3px;
+    line-height: 18px !important;
+    width: 277px !important;
+}
+.THIS .search-field:active, .THIS .search-field:focus {
+    backgroud-color: none;
+    border: solid 1px #ccc;
+}
+
+.THIS .uiButton.default:hover, .THIS .uiButton.default:focus {
+    background: rgba(0, 0, 0, 0) linear-gradient(#f8f8f9, #dddfe1) repeat scroll 0 0 !important;
+}

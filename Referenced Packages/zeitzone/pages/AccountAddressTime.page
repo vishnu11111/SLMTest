@@ -1,0 +1,21 @@
+<apex:page standardController="Account" sidebar="false" standardStylesheets="false">
+    <apex:includeScript value="/lightning/lightning.out.js" />
+
+    <div id="lightning" />
+
+    <script>
+        $Lightning.use("zeitzone:LocalTimeNewApp", function() {
+          $Lightning.createComponent("zeitzone:LocalTimeNew",
+          { recordId :"{!Account.Id}",redirectedFrom:"Vf" },
+          "lightning",
+          function(cmp) {
+            
+          });
+        });
+    
+    
+    function navigateToBack(){
+        history.back();
+        }
+    </script>
+</apex:page>

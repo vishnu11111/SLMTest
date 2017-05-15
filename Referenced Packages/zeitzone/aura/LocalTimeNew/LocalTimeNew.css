@@ -1,0 +1,154 @@
+@media (max-width: 650px){
+    .THIS .arrowStyle{
+     	margin-top: -1rem !important;   
+    }
+    .THIS .child-content {
+        width:166%;
+    }
+    .THIS .mobl{
+        margin-top: 0px !important;
+        border-radius: 0px !important;
+        border:0px !important;
+        height: 150px;
+    }
+    .THIS .uiInputSelect {
+        float: right;
+        width: auto;
+        background-color: #0989B0!important;
+        border: 0px;
+        border-style: none;
+        color: white;
+        font-size:75%;
+    }
+    .THIS .width15{
+        width: 15px !important;
+    }
+    .THIS #weatherDetail{
+        display: none;
+    }
+    .THIS .card4BackColor{
+        background-color: #0989B0  !important;
+        color: white;
+    } 
+    .THIS .card3BackColor{
+        background-color: #0DA8D4!important;
+        color: white;
+    }
+    
+}
+.THIS .Font80{
+    font-size: 80%;
+    padding: 3px;
+}
+.THIS .height75{
+    height: 75px;
+}
+@media (min-width: 650px){
+    .THIS .mobl{
+        width: 50% !important;
+        float: left;
+        margin-top: 0px !important;
+        border-radius: 0px !important;
+        border:0px !important;
+        height: 150px;
+    }
+    .THIS .width15{
+        width: 15px !important;
+    }
+    .THIS .uiInputSelect {
+        float: right;
+        width: auto;
+        background-color: #0da8d4!important;
+        border: 0px;
+        border-style: none;
+        color: white;
+        font-size:75%;
+    }
+    
+    
+    .THIS .weatherCol{
+        width:45% !important;
+        float: left;
+    }
+    .THIS .card4BackColor{
+        background-color: #0DA8D4  !important;
+        color: white;
+    } 
+    .THIS .card3BackColor{
+        background-color: #0989B0 !important;
+        color: white;
+    }
+}
+.THIS .card1BackColor{
+    background-color: #0DA8D4  !important;
+    color: white;
+} 
+.THIS .font100{
+    font-size:100% !important;
+}
+.THIS .SmallScreenType{
+    width: 100% !important;
+    float: left;
+    margin-top: 0px !important;
+    border-radius: 0px !important;
+    border:0px !important;
+    height: 150px;
+}
+.THIS .SSCard4{
+    background-color: #0989B0  !important;
+    color: white;
+} 
+.THIS .SSCard3{
+    background-color: #0DA8D4!important;
+    color: white;
+}
+.THIS .card2BackColor{
+    background-color: #0989B0 !important;
+    color: white;
+}
+.THIS .cursorPoint{
+    cursor:pointer;
+}
+.THIS .spanRotate{
+    display:inline-block;
+    transform:rotateX(180deg) !important;
+}
+
+.THIS .parent-content {
+    overflow-x:auto;
+}
+.THIS .parent-content::-webkit-scrollbar {
+    display:none;
+}
+.THIS .hide-scrollbar{
+    overflow-y:auto;
+}
+.THIS .hide-scrollbar::-webkit-scrollbar {
+    display:none;
+}
+.THIS .arrowStyle{
+    display:block;
+    margin:auto;
+}
+.THIS .weatherTrans{
+    background-color: rgba(244, 246, 249, 0.04);
+    padding-bottom: 5px;
+    margin: 2px;
+}
+.THIS .eventHeight{
+    height:125px;
+}
+.THIS .spinnerDiv{
+    background-color: rgba(0, 0, 0, 0.52) !important;
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+}
+.THIS .spinnerImg {
+    position: absolute;
+    top: 20%;
+    left: 42%;
+}
+.THIS .toggle {
+    display: none;
+}
